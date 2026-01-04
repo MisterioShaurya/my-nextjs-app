@@ -1,0 +1,285 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Modern Color Palette */
+  --primary-blue: #0055d4;
+  --primary-dark: #001a4d;
+  --accent-teal: #0ea5e9;
+  --accent-slate: #64748b;
+  --surface-light: #f8fafc;
+  --surface-white: #ffffff;
+  --text-dark: #1a202c;
+  --text-gray: #64748b;
+  --border-light: #e2e8f0;
+
+  /* Theme-aware accent colors */
+  --accent-primary: #0055d4;
+  --accent-secondary: #0ea5e9;
+
+  /* Backgrounds & Surfaces */
+  --background: oklch(0.98 0.01 250);
+  --foreground: oklch(0.12 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.02 250);
+
+  /* Primary & Accents */
+  --primary: #0055d4;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: #64748b;
+  --secondary-foreground: oklch(1 0 0);
+  --accent: #0ea5e9;
+  --accent-foreground: oklch(0.12 0.02 250);
+
+  /* UI Elements */
+  --muted: oklch(0.92 0.01 250);
+  --muted-foreground: oklch(0.5 0.01 250);
+  --border: oklch(0.93 0.01 250);
+  --input: oklch(0.96 0.01 250);
+  --ring: #0055d4;
+
+  /* Destructive */
+  --destructive: #dc2626;
+  --destructive-foreground: oklch(1 0 0);
+
+  /* Charts & Misc */
+  --chart-1: #0055d4;
+  --chart-2: #0ea5e9;
+  --chart-3: #64748b;
+  --chart-4: #f97316;
+  --chart-5: #8b5cf6;
+
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Updated dark mode colors to ensure proper contrast and theme awareness */
+.dark {
+  --background: oklch(0.1 0.01 250);
+  --foreground: oklch(0.95 0.01 0);
+  --card: oklch(0.15 0.01 250);
+  --card-foreground: oklch(0.95 0.01 0);
+  --primary: #60a5fa;
+  --primary-foreground: oklch(0.1 0.01 250);
+  --muted: oklch(0.25 0.01 250);
+  --muted-foreground: oklch(0.7 0.01 0);
+  --border: oklch(0.25 0.01 250);
+  --input: oklch(0.2 0.01 250);
+  --ring: #60a5fa;
+  --accent: #06b6d4;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+
+  /* Theme-aware accent colors for dark mode */
+  --accent-primary: #60a5fa;
+  --accent-secondary: #06b6d4;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h5 {
+    @apply font-sans font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply leading-relaxed text-base;
+  }
+}
+
+@layer utilities {
+  .smooth-transition {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  /* Added GitHub-style scroll animations */
+  .fade-in-on-scroll {
+    opacity: 0;
+    animation: fadeInOnScroll 0.8s ease-out forwards;
+  }
+
+  .slide-up-on-scroll {
+    opacity: 0;
+    animation: slideUpOnScroll 0.8s ease-out forwards;
+  }
+
+  .scale-up-on-scroll {
+    opacity: 0;
+    animation: scaleUpOnScroll 0.8s ease-out forwards;
+  }
+
+  .slide-left-on-scroll {
+    opacity: 0;
+    animation: slideLeftOnScroll 0.8s ease-out forwards;
+  }
+
+  .slide-right-on-scroll {
+    opacity: 0;
+    animation: slideRightOnScroll 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInOnScroll {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUpOnScroll {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleUpOnScroll {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideLeftOnScroll {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideRightOnScroll {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
