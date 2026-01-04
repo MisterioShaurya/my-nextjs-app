@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     description: "Building beautiful digital experiences",
     type: "website",
   },
+    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {

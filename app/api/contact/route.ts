@@ -1,4 +1,3 @@
-import { sendContactEmail } from "@/lib/email"
 import { z } from "zod"
 
 const contactSchema = z.object({
@@ -12,7 +11,6 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
 
-    // Honeypot spam protection
     if (body.honeypot) {
       return Response.json({ success: false, error: "Spam detected" }, { status: 400 })
     }
@@ -32,19 +30,12 @@ export async function POST(request: Request) {
 
     const { name, email, message } = result.data
 
-    const emailResult = await sendContactEmail(name, email, message)
+    console.log("Contact form submission:", { name, email, message, timestamp: new Date() })
 
-    if (!emailResult.success) {
-      return Response.json(
-        {
-          success: false,
-          error: emailResult.error,
-        },
-        { status: 500 },
-      )
-    }
-
-    return Response.json({ success: true, message: "Email sent successfully" })
+    return Response.json({
+      success: true,
+      message: "Thank you for your message! I'll get back to you soon.",
+    })
   } catch (error) {
     console.error("Contact API error:", error)
     return Response.json({ success: false, error: "Internal server error" }, { status: 500 })
